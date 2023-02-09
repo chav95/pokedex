@@ -1,7 +1,8 @@
 <template>
-  <div class="container">
+  <div class="container container-fluid">
     <pokemons v-for="(item,idx) in tempPokemons" :key="idx" :pokemon="item"></pokemons>
   </div>
+  <div class="d-none load-more"></div>
 </template>
 
 <script>

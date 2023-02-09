@@ -1,12 +1,12 @@
 <template>
-    <div class="card"> 
-      <router-link to="/detail/1" class="container">
-        <!-- <h4>{{pokemon.pokemon_species.name}}</h4> -->
-        <img :src="imgUrl" alt="pokemon front default">
-        <h4>{{this.ucwords(pokemon.name)}}</h4>
-        <h5 v-bind:style="{'color':typeClass}">{{this.ucwords(type)}}</h5>
-      </router-link>
+  <div class="card">
+    <img :src="imgUrl" alt="pokemon front default" class="card-img-top">
+    <div class="card-body">
+      <h5 class="card-title text-dark">{{this.ucwords(pokemon.name)}}</h5>
+      <p class="card-text" v-bind:style="{'color':typeClass}">{{this.ucwords(type)}}</p>
+      <router-link :to="`/detail/${pokemonID}`" class="btn btn-primary">More Detail</router-link>
     </div>
+  </div>
 </template>
 
 <script>
@@ -28,6 +28,7 @@
         imgUrl: '',
         type: '',
         typeClass: '',
+        pokemonID: 0,
       }
     },
     methods:{
@@ -41,6 +42,7 @@
         this.pokemonDetail = pokemonDetail.data
         this.imgUrl = pokemonDetail.data.sprites.front_default
         this.type = pokemonDetail.data.types[0].type.name
+        this.pokemonID = pokemonDetail.data.id
         
         switch(this.type){
           case ('grass' || 'poison' || 'bug'):
